@@ -8,5 +8,5 @@ Archivo(_nombre,_autor,_padre) {
 string CPP::toString(){
 	string L= to_string(this->lineasCodigo);
 	string E = to_string(this->numErrores);
-	return ""+this->nombre+"\n"+L+"\n"+E;
+	return "Linea de codigo"+L+"\n NumErrores: "+E;
 }

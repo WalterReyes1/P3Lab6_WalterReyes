@@ -7,12 +7,13 @@
 class JPG : public Archivo {
 	private :
 		bool conFlash;
-		string resolicion;
+		string resolucion;
 		double largo;
 		double ancho;
 	public:
-		JPG(bool,string,double,double);
-	protected:
+		JPG(bool,string,double,double,string,string,FileSystemNode*);
+		virtual string toString();
+	
 };
 
 #endif
