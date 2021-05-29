@@ -31,23 +31,28 @@ int menu() {
 int main(int argc, char** argv) {
 	FileSystem* pc = new FileSystem();
 	Directorio* descargas = new Directorio("Descargas","Walter",pc->getRoot());
+	pc->getRoot()->agregarDirectorio(descargas);
+	
 	descargas->agregarArchivo(new PPT("Ballenas",12,14,true,"PowerPoint","Walter",descargas));
 	descargas->agregarArchivo(new PPT("Pinguinos",12,14,true,"PowerPoint","Walter",descargas));
 	descargas->agregarArchivo(new PPT("Nintendo",12,14,true,"PowerPoint","Walter",descargas));
 
 	Directorio* fotos = new Directorio("Fotos","Walter",descargas);
+	
 	fotos->agregarArchivo(new JPG(true,"1080p",20,20,"Anubis","Walter",fotos));
 	fotos->agregarArchivo(new JPG(true,"1080p",30,30,"Alcantara","Walter",fotos));
 	fotos->agregarArchivo(new JPG(true,"1080p",40,40,"world","Walter",fotos));
+	fotos->agregarDirectorio(descargas);
 
 	Directorio* codigo = new Directorio("Codigo","Walter",fotos);
 	codigo->agregarArchivo(new CPP("Java.cpp","Walter",codigo,100,3));
 	codigo->agregarArchivo(new CPP("walter.cpp","Walter",codigo,100,3));
-	codigo->agregarArchivo(new CPP("señor.cpp","Walter",codigo,100,3));
-
-	descargas->agregarDirectorio(pc->getRoot());
-	fotos->agregarDirectorio(descargas);
-	codigo->agregarDirectorio(fotos);
+	codigo->agregarArchivo(new CPP("saior.cpp","Walter",codigo,100,3));
+	
+	descargas->agregarDirectorio(fotos);
+	fotos->agregarDirectorio(codigo);
+	
+	
 	//pc->getRoot()->imprimirRecursivo();
 	/*
 	if(dynamic_cast<Directorio*>(fotos)){
@@ -58,7 +63,10 @@ int main(int argc, char** argv) {
 	while(opcion != 5) {
 		switch(opcion=menu()) {
 			case 1: {
-
+				pc->getRoot()->imprimirRecursivo(0);
+				descargas->imprimirRecursivo(1);
+				fotos->imprimirRecursivo(2);
+				codigo->imprimirRecursivo(3);
 				break;
 			}//fin case1
 			case 2: {
@@ -70,7 +78,8 @@ int main(int argc, char** argv) {
 				cin>>nombre;
 				cout<<"Ingrese el autor: ";
 				cin>>autor;
-				Directorio* d = new Directorio(nombre,autor,pc->getRoot());
+				pc->getRoot()->agregarDirectorio( new Directorio(nombre,autor,pc->getRoot()));
+				
 				break;
 			}// fin case 2
 			case 3: {
@@ -93,7 +102,7 @@ int main(int argc, char** argv) {
 					cin>>nombre;
 					cout<<"Ingrese Autor: ";
 					cin>>autor;
-					cout"Ingrese numeros de lineas: ";
+					cout<<"Ingrese numeros de lineas: ";
 					cin>>lineas;
 					cout<<"Ingrese num de errores: ";
 					cin>>errores;
@@ -105,7 +114,7 @@ int main(int argc, char** argv) {
 					string resolucion;
 					bool flash;
 					double largo;
-					doubleancho;
+					double ancho;
 					int op2;
 					do {
 						cout<<"La foto tiene flash? \n 1. si \n 2. no"<<endl;
@@ -122,7 +131,7 @@ int main(int argc, char** argv) {
 					cin>>ancho;
 					cout<<"Ingrese largo: ";
 					cin>>largo;
-					cout"Ingrese nombre de la foto: ";
+					cout<<"Ingrese nombre de la foto: ";
 					cin>>nombre;
 					cout<<"Ingrese auto: ";
 					cin>>autor;
@@ -134,7 +143,7 @@ int main(int argc, char** argv) {
 					int ns;
 					int np;
 					bool ta;
-					stromg autor;
+					string autor;
 
 					cout<<"Ingrese elnombre del autor:  ";
 					cin>>autor;
@@ -145,25 +154,35 @@ int main(int argc, char** argv) {
 					cin>>ns;
 					cout<<"Ingrese Numero de Plantilla: ";
 					cin>>np;
-					int op1=1;
+					int op2=1;
 					do {
 						cout<<"El ppt tiene animacion? \n 1. si \n 2. no"<<endl;
 						cin >>op2;
 
-					} while(op1<1 || op1>2);
+					} while(op2<1 || op2>2);
 					if(op2==1) {
 						ta =true;
 					} else {
 						ta = false;
 					}
-
 					pc->getRoot()->agregarArchivo(new PPT(titulo,ns,np,ta,titulo,autor,pc->getRoot()));
-
 				}
 
 				break;
 			}
+			case 4:{
+				string buscar;
+				cout<<"Ingrese archivo a buscar: ";
+				cin>>buscar;
+				pc->getRoot()->buscarPorNombre(buscar);
+				
+				break;
+			}
 		}//fin switch
 	}//fin while
+	delete codigo;
+	delete fotos;
+	delete descargas;
+	delete pc;
 	return 0;
 }

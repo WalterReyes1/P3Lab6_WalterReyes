@@ -5,6 +5,7 @@ using namespace std;
 class FileSystemNode {
 	public:
 		FileSystemNode(string,string,FileSystemNode*);
+		string getNombre();
 		virtual string toString()=0;
 	protected:
 		string nombre;

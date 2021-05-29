@@ -6,6 +6,7 @@ FileSystem::FileSystem() {
 void FileSystem::setRoot(Directorio* _directorio){
 	this->root=_directorio;
 }
+
 Directorio* FileSystem::getRoot(){
 	return this->root;
 }

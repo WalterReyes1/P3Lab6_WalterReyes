@@ -4,9 +4,10 @@ CPP::CPP(string _nombre, string _autor, FileSystemNode* _padre ,int _lineasCodig
 Archivo(_nombre,_autor,_padre) {
 	this->numErrores=_numErrores;
 	this->lineasCodigo = _lineasCodigo;
+	this->autor=_autor;
 }
 string CPP::toString(){
 	string L= to_string(this->lineasCodigo);
 	string E = to_string(this->numErrores);
-	return "Linea de codigo"+L+"\n NumErrores: "+E;
+	return "Autor: "+this->autor+"\n Linea de codigo: "+L+"\n NumErrores: "+E;
 }

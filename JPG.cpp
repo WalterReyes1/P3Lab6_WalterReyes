@@ -6,10 +6,11 @@ Archivo(_nombre,_autor,_padre) {
 	this->resolucion = _resolucion;
 	this->largo=_largo;
 	this->ancho=_ancho;
+	this->autor=_autor;
 }
 string JPG::toString(){
 	string l = to_string(this->largo);
 	string a = to_string(this->ancho);
 	string t = to_string(this->conFlash);
-	return "Flash : "+t + "\n Resolucion: "+this->resolucion +"\n Largo: "+l+"\n Ancho:  "+a;
+	return "Autor: "+autor+" \n Flash : "+t + "\n Resolucion: "+this->resolucion +"\n Largo: "+l+"\n Ancho:  "+a;
 }

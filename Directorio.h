@@ -2,7 +2,9 @@
 #define DIRECTORIO_H
 #include <vector>
 #include <string>
+#include <stdlib.h>
 #include "FileSystemNode.h"
+#include "Archivo.h"
 using namespace std;
 
 class Directorio : public FileSystemNode {
@@ -15,7 +17,7 @@ class Directorio : public FileSystemNode {
 		void agregarArchivo(FileSystemNode*);
 		void agregarDirectorio(FileSystemNode*);
 		void buscarPorNombre(string);
-	
+		vector<FileSystemNode*> getHijos();
 };
 
 
